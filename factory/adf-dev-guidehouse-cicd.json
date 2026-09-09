@@ -1,0 +1,15 @@
+{
+	"name": "adf-dev-guidehouse-cicd",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2322d870-37f8-40e2-a099-202189a740a8",
+		"tenantId": "11e4ca61-3247-4bf8-9569-503b774800ee"
+	}
+}
