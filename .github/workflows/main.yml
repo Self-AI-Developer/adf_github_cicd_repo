@@ -25,12 +25,12 @@ jobs:
         
 # Validates all of the Data Factory resources in the repository. You'll get the same validation errors as when "Validate All" is selected.
     - name: Validate
-      run: npm run build validate ${{github.workspace}}/ /subscriptions/2cb14204-7282-45c4-8302-4fbed5f9b3d0/resourceGroups/rg-ltec-dev-rnd-shehzad-merchant-ncus/providers/Microsoft.DataFactory/factories/adf-dev-guidehouse-cicd # (2) The validate command needs the root folder location of your repository where all the objects are stored. And the 2nd parameter is the resourceID of the ADF instance 
+      run: npm run build validate ${{github.workspace}}/ /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/rg-ltec-dev-rnd-shehzad-merchant-ncus/providers/Microsoft.DataFactory/factories/adf-dev-guidehouse-cicd # (2) The validate command needs the root folder location of your repository where all the objects are stored. And the 2nd parameter is the resourceID of the ADF instance 
       working-directory: ${{github.workspace}}/build
  
 
     - name: Validate and Generate ARM template
-      run: npm run build export ${{github.workspace}}/ /subscriptions/2cb14204-7282-45c4-8302-4fbed5f9b3d0/resourceGroups/rg-ltec-dev-rnd-shehzad-merchant-ncus/providers/Microsoft.DataFactory/factories/adf-dev-guidehouse-cicd "ExportedArmTemplate"  # (3) The build command, as validate, needs the root folder location of your repository where all the objects are stored. And the 2nd parameter is the resourceID of the ADF instance. The 3rd parameter is the exported ARM template artifact name 
+      run: npm run build export ${{github.workspace}}/ /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/rg-ltec-dev-rnd-shehzad-merchant-ncus/providers/Microsoft.DataFactory/factories/adf-dev-guidehouse-cicd "ExportedArmTemplate"  # (3) The build command, as validate, needs the root folder location of your repository where all the objects are stored. And the 2nd parameter is the resourceID of the ADF instance. The 3rd parameter is the exported ARM template artifact name 
       working-directory: ${{github.workspace}}/build
  
 # In order to leverage the artifact in another job, we need to upload it with the upload action 
@@ -46,11 +46,23 @@ jobs:
     steps:
     
  # we 1st download the previously uploaded artifact so we can leverage it later in the release job     
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: Download a Build Artifact
         uses: actions/download-artifact@v4
         with:
-          name: ExportedArmTemplate # (5) Artifact name
+          name: ExportedArmTemplate
+          path: ExportedArmTemplate
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Update ARM template parameters from config
+        run: |
+          python scripts/update_arm_template.py ExportedArmTemplate/ARMTemplateParametersForFactory.json configs/adf_params_test.json
 
       - name: Login via Az module
         uses: azure/login@v1
@@ -68,7 +80,7 @@ jobs:
           armTemplateFile: ARMTemplateForFactory.json
           armTemplateParametersFile: ARMTemplateParametersForFactory.json
           skipAzModuleInstallation: true
-          additionalParameters: ls_az_keyvault_properties_typeProperties_baseUrl=https://kv-adf-test-data.vault.azure.net/ ls_az_datalake_kv_properties_typeProperties_url=https://sadltest.dfs.core.windows.net/
+          #additionalParameters: ls_az_keyvault_properties_typeProperties_baseUrl=https://kv-adf-test-data.vault.azure.net/ ls_az_datalake_kv_properties_typeProperties_url=https://sadltest.dfs.core.windows.net/
           #additionalParameters: # (10) Parameters which will be replaced in the ARM template. Expected format 'key1=value key2=value keyN=value'. At the minimum here you should provide the target ADF name parameter. Check the ARMTemplateParametersForFactory.json file for all the parameters that are expected in your scenario
                  
           # skipAzModuleInstallation:  # Parameters which skip the Az module installation. Optional, default is false.      
