@@ -77,9 +77,9 @@ jobs:
         with:
           resourceGroupName: rg-ltec-dev-rnd-shehzad-merchant-ncus
           dataFactoryName: adf-test-guidehouse-cicd
-          armTemplateFile: ARMTemplateForFactory.json
-          armTemplateParametersFile: ARMTemplateParametersForFactory.json
-          skipAzModuleInstallation: true
+          armTemplateFile: ExportedArmTemplate/ARMTemplateForFactory.json
+          armTemplateParametersFile: ExportedArmTemplate/ARMTemplateParametersForFactory.json
+          #skipAzModuleInstallation: true
           #additionalParameters: ls_az_keyvault_properties_typeProperties_baseUrl=https://kv-adf-test-data.vault.azure.net/ ls_az_datalake_kv_properties_typeProperties_url=https://sadltest.dfs.core.windows.net/
           #additionalParameters: # (10) Parameters which will be replaced in the ARM template. Expected format 'key1=value key2=value keyN=value'. At the minimum here you should provide the target ADF name parameter. Check the ARMTemplateParametersForFactory.json file for all the parameters that are expected in your scenario
                  
