@@ -1,0 +1,31 @@
+{
+	"name": "pipeline-databricks-param",
+	"properties": {
+		"activities": [
+			{
+				"name": "Notebook-Process-Emp",
+				"description": "Notebook-Process-Emp",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"baseParameters": {
+						"parent_dept": "Sales"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "adb_shehzadmerchant",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
