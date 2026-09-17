@@ -16,6 +16,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"notebookPath": "/Users/shehzad.merchant@lanternstudios.com/Notebooks/Run_Wite_Emp_Data",
 					"baseParameters": {
 						"parent_dept": "Sales"
 					}
