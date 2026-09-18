@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "population2.csv",
+				"fileName": "population.csv",
 				"folderPath": "input",
 				"fileSystem": "default"
 			},
