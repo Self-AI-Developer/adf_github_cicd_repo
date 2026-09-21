@@ -7,6 +7,18 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-dev-guidehouse-cicd"
 		},
+		"adb_shehzadmerchant_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'adb_shehzadmerchant'"
+		},
+		"ls_az_datalake_kv_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadldev.dfs.core.windows.net/"
+		},
+		"ls_az_keyvault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv-adf-dev-data.vault.azure.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -33,6 +45,15 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"adb_shehzadmerchant_accessToken": {
+						"value": "[parameters('adb_shehzadmerchant_accessToken')]"
+					},
+					"ls_az_keyvault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('ls_az_keyvault_properties_typeProperties_baseUrl')]"
+					},
+					"ls_az_datalake_kv_properties_typeProperties_url": {
+						"value": "[parameters('ls_az_datalake_kv_properties_typeProperties_url')]"
 					}
 				}
 			},
