@@ -3,15 +3,25 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Wait1",
-				"type": "Wait",
+				"name": "Set Limit",
+				"type": "SetVariable",
 				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 1
+					"variableName": "Limit",
+					"value": 1
 				}
 			}
 		],
+		"variables": {
+			"Limit": {
+				"type": "Integer"
+			}
+		},
 		"annotations": [],
 		"lastPublishTime": "2026-09-09T16:38:56Z"
 	},
