@@ -28,7 +28,6 @@
 			},
 			{
 				"name": "Databricks Execution",
-				"description": "Databricks Execution",
 				"type": "IfCondition",
 				"dependsOn": [
 					{
@@ -41,24 +40,9 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(activity('Notebook-Process-Emp').output.runOutput.status,'SUCCESS'\n)\n",
+						"value": "@equals(activity('Notebook-Process-Emp').output.RunOutput.status,'SUCCESS')",
 						"type": "Expression"
 					},
-					"ifFalseActivities": [
-						{
-							"name": "Failed Activity",
-							"type": "Fail",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"message": {
-									"value": "@activity('Notebook-Process-Emp').output.runOutput.error",
-									"type": "Expression"
-								},
-								"errorCode": "500"
-							}
-						}
-					],
 					"ifTrueActivities": [
 						{
 							"name": "Set RecordCount",
