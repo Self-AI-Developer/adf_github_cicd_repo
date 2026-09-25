@@ -5,8 +5,11 @@
 		"factoryName": {
 			"value": "adf-dev-guidehouse-cicd"
 		},
-		"adb_shehzadmerchant_accessToken": {
+		"adb_shehzadmerchant_003_accessToken": {
 			"value": ""
+		},
+		"adb_shehzadmerchant_003_properties_typeProperties_existingClusterId": {
+			"value": "0924-231134-yruxbzc6"
 		},
 		"ls_az_datalake_kv_properties_typeProperties_url": {
 			"value": "https://sadldev.dfs.core.windows.net/"

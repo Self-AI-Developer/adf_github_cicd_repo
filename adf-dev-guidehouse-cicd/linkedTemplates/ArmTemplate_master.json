@@ -7,9 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-dev-guidehouse-cicd"
 		},
-		"adb_shehzadmerchant_accessToken": {
+		"adb_shehzadmerchant_003_accessToken": {
 			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'adb_shehzadmerchant'"
+			"metadata": "Secure string for 'accessToken' of 'adb_shehzadmerchant_003'"
+		},
+		"adb_shehzadmerchant_003_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0924-231134-yruxbzc6"
 		},
 		"ls_az_datalake_kv_properties_typeProperties_url": {
 			"type": "string",
@@ -46,8 +50,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"adb_shehzadmerchant_accessToken": {
-						"value": "[parameters('adb_shehzadmerchant_accessToken')]"
+					"adb_shehzadmerchant_003_accessToken": {
+						"value": "[parameters('adb_shehzadmerchant_003_accessToken')]"
+					},
+					"adb_shehzadmerchant_003_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('adb_shehzadmerchant_003_properties_typeProperties_existingClusterId')]"
 					},
 					"ls_az_keyvault_properties_typeProperties_baseUrl": {
 						"value": "[parameters('ls_az_keyvault_properties_typeProperties_baseUrl')]"

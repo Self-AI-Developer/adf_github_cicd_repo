@@ -7,9 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-dev-guidehouse-cicd"
 		},
-		"adb_shehzadmerchant_accessToken": {
+		"adb_shehzadmerchant_003_accessToken": {
 			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'adb_shehzadmerchant'"
+			"metadata": "Secure string for 'accessToken' of 'adb_shehzadmerchant_003'"
+		},
+		"adb_shehzadmerchant_003_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0924-231134-yruxbzc6"
 		},
 		"ls_az_keyvault_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -120,26 +124,20 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/adb_shehzadmerchant')]",
+			"name": "[concat(parameters('factoryName'), '/adb_shehzadmerchant_003')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"description": "adb_shehzadmerchant_003",
 				"annotations": [],
 				"type": "AzureDatabricks",
 				"typeProperties": {
-					"domain": "https://adb-7405617349724560.0.azuredatabricks.net",
+					"domain": "https://adb-7405605896275386.6.azuredatabricks.net",
 					"accessToken": {
 						"type": "SecureString",
-						"value": "[parameters('adb_shehzadmerchant_accessToken')]"
+						"value": "[parameters('adb_shehzadmerchant_003_accessToken')]"
 					},
-					"newClusterNodeType": "Standard_D4s_v5",
-					"newClusterNumOfWorker": "1",
-					"newClusterSparkEnvVars": {
-						"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
-					},
-					"newClusterVersion": "16.4.x-cpu-ml-scala2.13",
-					"clusterOption": "Fixed",
-					"newClusterInitScripts": []
+					"existingClusterId": "[parameters('adb_shehzadmerchant_003_properties_typeProperties_existingClusterId')]"
 				}
 			},
 			"dependsOn": []
@@ -183,18 +181,76 @@
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "adb_shehzadmerchant",
+							"referenceName": "adb_shehzadmerchant_003",
 							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Databricks Execution",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Notebook-Process-Emp",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Notebook-Process-Emp').output.runOutput.status,'SUCCESS')",
+								"type": "Expression"
+							},
+							"ifFalseActivities": [
+								{
+									"name": "Failed Activity",
+									"type": "Fail",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"message": {
+											"value": "@activity('Notebook-Process-Emp').output.runOutput.error",
+											"type": "Expression"
+										},
+										"errorCode": "500"
+									}
+								}
+							],
+							"ifTrueActivities": [
+								{
+									"name": "Set RecordCount",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "v_RecordCount",
+										"value": {
+											"value": "@activity('Notebook-Process-Emp').output.runOutput.rows_count",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
+				"variables": {
+					"v_RecordCount": {
+						"type": "String"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/adb_shehzadmerchant')]"
+				"[concat(variables('factoryId'), '/linkedServices/adb_shehzadmerchant_003')]"
 			]
 		},
 		{
