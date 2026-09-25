@@ -22,7 +22,7 @@
 					}
 				},
 				"linkedServiceName": {
-					"referenceName": "adb_shehzadmerchant",
+					"referenceName": "adb_shehzadmerchant_003",
 					"type": "LinkedServiceReference"
 				}
 			},
