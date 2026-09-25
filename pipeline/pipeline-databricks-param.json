@@ -40,7 +40,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(activity('Notebook-Process-Emp').output.RunOutput.status,'SUCCESS')",
+						"value": "@equals(activity('Notebook-Process-Emp').output.runOutput.status,'SUCCESS')",
 						"type": "Expression"
 					},
 					"ifFalseActivities": [
