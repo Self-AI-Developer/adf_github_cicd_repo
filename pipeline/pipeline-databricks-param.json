@@ -25,8 +25,67 @@
 					"referenceName": "adb_shehzadmerchant",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "Databricks Execution",
+				"description": "Databricks Execution",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Notebook-Process-Emp",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('Notebook-Process-Emp').output.runOutput.status,'SUCCESS'\n)\n",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Failed Activity",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": {
+									"value": "@activity('Notebook-Process-Emp').output.runOutput.error",
+									"type": "Expression"
+								},
+								"errorCode": "500"
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Set RecordCount",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "v_RecordCount",
+								"value": {
+									"value": "@activity('Notebook-Process-Emp').output.runOutput.rows_count",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
 			}
 		],
+		"variables": {
+			"v_RecordCount": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
