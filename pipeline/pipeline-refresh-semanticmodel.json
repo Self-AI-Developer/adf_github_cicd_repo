@@ -1,0 +1,28 @@
+{
+	"name": "pipeline-refresh-semanticmodel",
+	"properties": {
+		"activities": [
+			{
+				"name": "Fabric - Refresh Semantic Model",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://api.powerbi.com/v1.0/myorg/groups/b7d13003-23f1-4848-9bcf-e5c76e8b1868/datasets/09dcceba-173a-45f4-a6bf-5a157d630f3e/refreshes",
+					"authentication": {
+						"type": "MSI"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
