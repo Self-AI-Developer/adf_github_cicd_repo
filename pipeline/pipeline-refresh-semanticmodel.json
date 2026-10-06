@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Fabric - Refresh Semantic Model",
+				"name": "Fabric - Refresh Semantic Model-2",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -22,6 +22,12 @@
 					"url": {
 						"value": "@concat('https://api.powerbi.com/v1.0/myorg/groups/',pipeline().parameters.WorkSpaceID,'/datasets/',pipeline().parameters.SemanticModelID,'/refreshes')",
 						"type": "Expression"
+					},
+					"body": {
+						"status": "success",
+						"message": "Data retrieved successfully",
+						"id": 101,
+						"active": true
 					},
 					"authentication": {
 						"type": "MSI",
