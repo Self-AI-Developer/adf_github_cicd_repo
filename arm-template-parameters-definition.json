@@ -20,10 +20,10 @@
     "properties": {
       "parameters": {
         "WorkSpaceID": {
-          "defaultValue": "b7d13003-23f1-4848-9bcf-e5c76e8b1868"
+          "defaultValue": "=::string"
         },
         "SemanticModelID": {
-          "defaultValue": "09dcceba-173a-45f4-a6bf-5a157d630f3e"
+          "defaultValue": "=::string"
         }
       }
     }
