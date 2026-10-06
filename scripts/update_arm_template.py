@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -24,12 +25,18 @@ def update_parameters(template_file, config_file):
 
     for key in parameters.keys():
         if key in config:
-            parameters[key]["value"] = config[key]
+            value = config[key]
+            if isinstance(value, dict) and set(value) == {"env"}:
+                value = os.environ.get(value["env"])
+                if not value:
+                    missing_keys.append(key)
+                    continue
+            parameters[key]["value"] = value
         else:
             missing_keys.append(key)
 
     if missing_keys:
-        print("Missing values for the following keys in the config file:")
+        print("Missing values for the following keys in the config file or environment:")
         for k in missing_keys:
             print(f" - {k}")
         sys.exit(1)

@@ -63,6 +63,9 @@ jobs:
           python-version: '3.x'
 
       - name: Update ARM template parameters from config
+        env:
+          DATABRICKS_ACCESS_TOKEN: ${{ secrets.DATABRICKS_ACCESS_TOKEN }}
+          DATABRICKS_CLUSTER_ID: ${{ vars.DATABRICKS_CLUSTER_ID }}
         run: |
           python scripts/update_arm_template.py ExportedArmTemplate/ARMTemplateParametersForFactory.json configs/adf_params_test.json
 
