@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Fabric - Refresh Semantic Model-3",
+				"name": "Fabric - Refresh Semantic Model-4",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
