@@ -23,12 +23,7 @@
 						"value": "@concat('https://api.powerbi.com/v1.0/myorg/groups/',pipeline().parameters.WorkSpaceID,'/datasets/',pipeline().parameters.SemanticModelID,'/refreshes')",
 						"type": "Expression"
 					},
-					"body": {
-						"status": "success",
-						"message": "Data retrieved successfully",
-						"id": 101,
-						"active": true
-					},
+					"body": "{\"status\":\"success\",\"message\":\"Data retrieved successfully\",\"id\":101,\"active\":true}",
 					"authentication": {
 						"type": "MSI",
 						"resource": "https://analysis.windows.net/powerbi/api"
