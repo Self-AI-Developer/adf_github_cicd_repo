@@ -2,8 +2,8 @@
   "ls_az_keyvault_properties_typeProperties_baseUrl": "https://kv-adf-test-data.vault.azure.net/",
   "ls_az_datalake_kv_properties_typeProperties_url": "https://sadltest.dfs.core.windows.nett",
   "factoryName":"adf-test-guidehouse-cicd",
-  "pipeline-refresh-semanticmodel_properties_parameters_WorkSpaceID_defaultValue": "<test-workspace-guid>",
-  "pipeline-refresh-semanticmodel_properties_parameters_SemanticModelID_defaultValue": "<test-semantic-model-guid>",
+  "pipeline-refresh-semanticmodel_properties_parameters_WorkSpaceID_defaultValue": "b7d13003-23f1-4848-9bcf-e5c76e8b1869",
+  "pipeline-refresh-semanticmodel_properties_parameters_SemanticModelID_defaultValue": "09dcceba-173a-45f4-a6bf-5a157d630f3e",
   "adb_shehzadmerchant_003_accessToken": {"env": "DATABRICKS_ACCESS_TOKEN"},
   "adb_shehzadmerchant_003_properties_typeProperties_existingClusterId": {"env": "DATABRICKS_CLUSTER_ID"}
 }
