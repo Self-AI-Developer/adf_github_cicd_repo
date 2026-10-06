@@ -4,7 +4,7 @@
 		"activities": [
 			{
 				"name": "Notebook-Process-Emp",
-				"description": "Notebook-Process-Emp",
+				"description": "Notebook-Process-Employee",
 				"type": "DatabricksNotebook",
 				"dependsOn": [],
 				"policy": {
