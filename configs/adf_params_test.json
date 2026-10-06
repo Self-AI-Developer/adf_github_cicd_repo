@@ -1,5 +1,7 @@
 {
   "ls_az_keyvault_properties_typeProperties_baseUrl": "https://kv-adf-test-data.vault.azure.net/",
   "ls_az_datalake_kv_properties_typeProperties_url": "https://sadltest.dfs.core.windows.nett",
-  "factoryName":"adf-test-guidehouse-cicd"
+  "factoryName":"adf-test-guidehouse-cicd",
+  "adb_shehzadmerchant_003_accessToken": {"env": "DATABRICKS_ACCESS_TOKEN"},
+  "adb_shehzadmerchant_003_properties_typeProperties_existingClusterId": {"env": "DATABRICKS_CLUSTER_ID"}
 }
