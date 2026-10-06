@@ -16,6 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "POST",
+					"body": "{}",
 					"headers": {
 						"Content-Type": "application/json"
 					},
