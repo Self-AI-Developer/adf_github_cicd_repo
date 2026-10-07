@@ -3,7 +3,12 @@
     "properties": {
       "globalParameters": {
         "*": {
-          "value": "="
+          "value": "=",
+          "type": "="
+        },
+        "gl_WorkspaceID": {
+          "value": "=",
+          "type": "="
         }
       }
     },
