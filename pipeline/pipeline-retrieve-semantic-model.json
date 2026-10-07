@@ -1,0 +1,36 @@
+{
+	"name": "pipeline-retrieve-semantic-model",
+	"properties": {
+		"activities": [
+			{
+				"name": "Retrieve-semantic-model",
+				"description": "Retrieve-semantic-model by passing Workspace Id",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"url": {
+						"value": "@concat('https://api.powerbi.com/v1.0/myorg/groups/',pipeline().globalParameters.gl-WorkspaceID,'/datasets')",
+						"type": "Expression"
+					},
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://analysis.windows.net/powerbi/api"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
