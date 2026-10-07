@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Retrieve-semantic-model",
+				"name": "Retrieve-semantic-model -2",
 				"description": "Retrieve-semantic-model by passing Workspace Id",
 				"type": "WebActivity",
 				"dependsOn": [],
