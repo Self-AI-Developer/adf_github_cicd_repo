@@ -66,6 +66,7 @@
 									"value": "@concat('https://api.powerbi.com/v1.0/myorg/groups/',pipeline().globalParameters.gl_WorkspaceID,'/datasets/',item().id,'/refreshes')",
 									"type": "Expression"
 								},
+								"body": "{}",
 								"authentication": {
 									"type": "MSI",
 									"resource": "https://analysis.windows.net/powerbi/api"
