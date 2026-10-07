@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Retrieve-semantic-model",
+				"name": "Retrieve-semantic-model-1",
 				"description": "Retrieve-semantic-model by passing Workspace Id",
 				"type": "WebActivity",
 				"dependsOn": [],
@@ -32,7 +32,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Retrieve-semantic-model",
+						"activity": "Retrieve-semantic-model-1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Retrieve-semantic-model').output.value\n",
+						"value": "@activity('Retrieve-semantic-model-1').output.value\n",
 						"type": "Expression"
 					},
 					"activities": [
