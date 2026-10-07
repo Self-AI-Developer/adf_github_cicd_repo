@@ -41,7 +41,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Retrieve-semantic-model').output.value\n",
+						"value": "@activity('Retrieve-semantic-model-1').output.value\n",
 						"type": "Expression"
 					},
 					"activities": [
