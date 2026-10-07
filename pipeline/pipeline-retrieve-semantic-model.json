@@ -17,9 +17,6 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "GET",
-					"headers": {
-						"Content-Type": "application/json"
-					},
 					"url": {
 						"value": "@concat('https://api.powerbi.com/v1.0/myorg/groups/',pipeline().globalParameters.gl_WorkspaceID,'/datasets')",
 						"type": "Expression"
@@ -62,9 +59,16 @@
 							"userProperties": [],
 							"typeProperties": {
 								"method": "POST",
+								"headers": {
+									"Content-Type": "application/json"
+								},
 								"url": {
 									"value": "@concat('https://api.powerbi.com/v1.0/myorg/groups/',pipeline().globalParameters.gl_WorkspaceID,'/datasets/',item().id,'/refreshes')",
 									"type": "Expression"
+								},
+								"authentication": {
+									"type": "MSI",
+									"resource": "https://analysis.windows.net/powerbi/api"
 								}
 							}
 						}
