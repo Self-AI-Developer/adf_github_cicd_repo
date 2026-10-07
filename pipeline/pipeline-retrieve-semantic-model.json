@@ -29,6 +29,43 @@
 						"resource": "https://analysis.windows.net/powerbi/api"
 					}
 				}
+			},
+			{
+				"name": "ForEach Datasets",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Retrieve-semantic-model -3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"activities": [
+						{
+							"name": "Fabric - Refresh Semantic Model",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"method": "POST",
+								"url": {
+									"value": "@concat('https://api.powerbi.com/v1.0/myorg/groups/',pipeline().globalParameters.gl_WorkspaceID,'/datasets/',item().id,'/refreshes')",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
 			}
 		],
 		"annotations": []
