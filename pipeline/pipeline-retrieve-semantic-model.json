@@ -17,9 +17,6 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "GET",
-					"headers": {
-						"Content-Type": "application/json"
-					},
 					"url": {
 						"value": "@concat('https://api.powerbi.com/v1.0/myorg/groups/',pipeline().globalParameters.gl_WorkspaceID,'/datasets')",
 						"type": "Expression"
@@ -28,6 +25,54 @@
 						"type": "MSI",
 						"resource": "https://analysis.windows.net/powerbi/api"
 					}
+				}
+			},
+			{
+				"name": "ForEach Datasets",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Retrieve-semantic-model",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Retrieve-semantic-model').output.value\n",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Fabric - Refresh Semantic Model",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"method": "POST",
+								"headers": {
+									"Content-Type": "application/json"
+								},
+								"url": {
+									"value": "@concat('https://api.powerbi.com/v1.0/myorg/groups/',pipeline().globalParameters.gl_WorkspaceID,'/datasets/',item().id,'/refreshes')",
+									"type": "Expression"
+								},
+								"authentication": {
+									"type": "MSI",
+									"resource": "https://analysis.windows.net/powerbi/api"
+								}
+							}
+						}
+					]
 				}
 			}
 		],
