@@ -1,6 +1,12 @@
 {
 	"name": "adf-dev-guidehouse-cicd",
 	"properties": {
+		"globalParameters": {
+			"gl-WorkspaceID": {
+				"type": "string",
+				"value": "1"
+			}
+		},
 		"trustModeClaimForMi": {
 			"value": "Disabled",
 			"editable": true
