@@ -77,6 +77,15 @@
 				}
 			}
 		],
+		"variables": {
+			"ModelNames": {
+				"type": "Array",
+				"defaultValue": [
+					"Population",
+					"Regional Sales Sample"
+				]
+			}
+		},
 		"annotations": []
 	}
 }
