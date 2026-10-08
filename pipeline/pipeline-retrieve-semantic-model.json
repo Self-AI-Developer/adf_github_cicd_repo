@@ -57,7 +57,7 @@
 								},
 								"ifTrueActivities": [
 									{
-										"name": "Fabric - Refresh Semantic Model_copy1",
+										"name": "Fabric - Refresh Semantic Model",
 										"type": "WebActivity",
 										"dependsOn": [],
 										"policy": {
