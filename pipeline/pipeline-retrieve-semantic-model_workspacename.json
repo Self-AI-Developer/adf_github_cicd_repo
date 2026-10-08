@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "GET",
-					"url": "GET https://api.fabric.microsoft.com/v1/workspaces",
+					"url": "https://api.fabric.microsoft.com/v1/workspaces",
 					"authentication": {
 						"type": "MSI",
 						"resource": "https://analysis.windows.net/powerbi/api"
