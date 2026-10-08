@@ -6,5 +6,5 @@
   "pipeline-refresh-semanticmodel_properties_parameters_SemanticModelID": "09dcceba-173a-45f4-a6bf-5a157d630f3e",
   "adb_shehzadmerchant_003_accessToken": {"env": "DATABRICKS_ACCESS_TOKEN"},
   "adb_shehzadmerchant_003_properties_typeProperties": {"env": "DATABRICKS_CLUSTER_ID"},
-  "factoryName_properties_globalParameters_gl_WorkspaceID_value": "b7d13003-23f1-4848-9bcf-e5c76e8b1868"
+  "default_properties_gl_WorkspaceID_value": "b7d13003-23f1-4848-9bcf-e5c76e8b1868"
 }
