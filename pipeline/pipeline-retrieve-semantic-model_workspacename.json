@@ -1,0 +1,38 @@
+{
+	"name": "pipeline-retrieve-semantic-model_workspacename",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get workspaces",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "GET https://api.fabric.microsoft.com/v1/workspaces",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://analysis.windows.net/powerbi/api"
+					}
+				}
+			}
+		],
+		"variables": {
+			"ModelNames": {
+				"type": "Array",
+				"defaultValue": [
+					"Population",
+					"Regional Sales Sample"
+				]
+			}
+		},
+		"annotations": []
+	}
+}
