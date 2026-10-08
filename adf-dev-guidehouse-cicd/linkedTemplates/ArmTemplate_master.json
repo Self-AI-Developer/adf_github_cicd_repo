@@ -1,0 +1,83 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-dev-guidehouse-cicd"
+		},
+		"adb_shehzadmerchant_003_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'adb_shehzadmerchant_003'"
+		},
+		"pipeline-refresh-semanticmodel_properties_parameters_WorkSpaceID": {
+			"type": "string",
+			"defaultValue": "b7d13003-23f1-4848-9bcf-e5c76e8b1868"
+		},
+		"pipeline-refresh-semanticmodel_properties_parameters_SemanticModelID": {
+			"type": "string",
+			"defaultValue": "09dcceba-173a-45f4-a6bf-5a157d630f3e"
+		},
+		"adb_shehzadmerchant_003_properties_typeProperties": {
+			"type": "string"
+		},
+		"ls_az_datalake_kv_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sadldev.dfs.core.windows.net/"
+		},
+		"ls_az_keyvault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv-adf-dev-data.vault.azure.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-dev-guidehouse-cicd_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"adb_shehzadmerchant_003_accessToken": {
+						"value": "[parameters('adb_shehzadmerchant_003_accessToken')]"
+					},
+					"pipeline-refresh-semanticmodel_properties_parameters_WorkSpaceID": {
+						"value": "[parameters('pipeline-refresh-semanticmodel_properties_parameters_WorkSpaceID')]"
+					},
+					"pipeline-refresh-semanticmodel_properties_parameters_SemanticModelID": {
+						"value": "[parameters('pipeline-refresh-semanticmodel_properties_parameters_SemanticModelID')]"
+					},
+					"adb_shehzadmerchant_003_properties_typeProperties": {
+						"value": "[parameters('adb_shehzadmerchant_003_properties_typeProperties')]"
+					},
+					"ls_az_keyvault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('ls_az_keyvault_properties_typeProperties_baseUrl')]"
+					},
+					"ls_az_datalake_kv_properties_typeProperties_url": {
+						"value": "[parameters('ls_az_datalake_kv_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

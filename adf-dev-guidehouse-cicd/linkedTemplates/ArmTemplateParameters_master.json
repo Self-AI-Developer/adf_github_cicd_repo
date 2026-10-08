@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-dev-guidehouse-cicd"
+		},
+		"adb_shehzadmerchant_003_accessToken": {
+			"value": ""
+		},
+		"pipeline-refresh-semanticmodel_properties_parameters_WorkSpaceID": {
+			"value": "b7d13003-23f1-4848-9bcf-e5c76e8b1868"
+		},
+		"pipeline-refresh-semanticmodel_properties_parameters_SemanticModelID": {
+			"value": "09dcceba-173a-45f4-a6bf-5a157d630f3e"
+		},
+		"adb_shehzadmerchant_003_properties_typeProperties": {
+			"value": ""
+		},
+		"ls_az_datalake_kv_properties_typeProperties_url": {
+			"value": "https://sadldev.dfs.core.windows.net/"
+		},
+		"ls_az_keyvault_properties_typeProperties_baseUrl": {
+			"value": "https://kv-adf-dev-data.vault.azure.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
