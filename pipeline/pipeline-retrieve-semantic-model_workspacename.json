@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get workspaces",
+				"name": "Get Fabric Workspaces",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -17,6 +17,61 @@
 				"typeProperties": {
 					"method": "GET",
 					"url": "https://api.fabric.microsoft.com/v1/workspaces",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://analysis.windows.net/powerbi/api"
+					}
+				}
+			},
+			{
+				"name": "Filter Workspace",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Get Fabric Workspaces",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Fabric Workspaces').output.value",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(\nitem().displayName,\npipeline().globalParameters.gl_WorkspaceName\n)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Retrieve-semantic-model",
+				"description": "Retrieve-semantic-model by passing Workspace Id",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Filter Workspace",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": {
+						"value": "@concat('https://api.powerbi.com/v1.0/myorg/groups/',first(activity('Filter Workspace').output.value).id,'/datasets')",
+						"type": "Expression"
+					},
 					"authentication": {
 						"type": "MSI",
 						"resource": "https://analysis.windows.net/powerbi/api"
