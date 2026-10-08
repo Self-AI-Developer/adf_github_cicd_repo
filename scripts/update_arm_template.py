@@ -21,6 +21,12 @@ def update_parameters(template_file, config_file):
     config = load_json_file(config_file)
 
     parameters = template.get("parameters", {})
+    unknown_keys = sorted(set(config) - set(parameters))
+	if unknown_keys:
+        print("Config keys not found in exported ARM parameters:")
+        for key in unknown_keys:
+            print(f" - {key}")
+        sys.exit(1)
     missing_keys = []
 
     for key in parameters.keys():
